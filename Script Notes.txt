@@ -1,0 +1,72 @@
+Script Notes:
+
+$#		represents the total number of arguments passed with script execution. like , ./script.sh <argument> . so in this case $# will be 1
+./script.sh <arg1> <arg2> <arg3>		$1=arg1 $2=arg2 $3=arg3 $0= script.sh
+
+*******************************************************************************************************************************************************************************************************************************
+#for loop example
+for i in 1 2 3 4 5 6 7 8 9 10
+do 
+	echo "Number: $i"
+done
+
+*******************************************************************************************************************************************************************************************************************************
+echo $1 | grep -Eq '^[0-9]+$'	-> will check if the argument provided is a number . it will false in case 10a, aa, A10 is provided as argument
+
+*******************************************************************************************************************************************************************************************************************************
+if [ -f "$1" ]; then
+	echo "This is a regular file"
+elif [ -d "$1" ]; then
+        echo "This is a directory"
+elif [ -e "$1" ]; then
+	echo "Exists but not a regular file or directory"
+else
+        echo "Path does not exist"
+        exit 1
+
+#       -e (exists)
+#     ┌─────────────┐
+#     │             │
+#     │   -f   -d   │
+#     │  file  dir  │
+#     │             │
+#     └─────────────┘
+
+*******************************************************************************************************************************************************************************************************************************
+stat -c %s <file> 		will outputs the file size in bytes
+ls -1 <directory> | wc -l		ls -1 is used to print the output of the directory in such a way that only one content will be displayed in one line and further using wc -l will count the total content list
+
+*******************************************************************************************************************************************************************************************************************************
+
+count=$((count+1))	(())-> used for maths, $(())-> used for assigning
+
+if [ -z "$input" ]; then
+    continue
+fi
+
+-z STRING		-> returns true is STRING length is zero
+
+while [ condition ]; do
+    commands
+done
+
+*******************************************************************************************************************************************************************************************************************************
+read -r choice
+case "$choice" in
+    1)
+        echo "You chose option 1"
+        ;;
+    2)
+        echo "You chose option 2"
+        ;;
+    q|Q)
+        echo "Quitting"
+        ;;
+    *)
+        echo "Invalid option"
+        ;;
+esac
+
+*******************************************************************************************************************************************************************************************************************************
+
+
