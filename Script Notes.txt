@@ -69,4 +69,44 @@ esac
 
 *******************************************************************************************************************************************************************************************************************************
 
+Array
+server=("web1" "web2" "db1" "db2")
+echo "${server[0]}"	#print first element
+echo "${server[1]}"	#print second element
+
+echo "Loop over array"
+
+for s in "${server[@]}"; do
+	echo "$s"
+done
+
+
+echo "Length of array"
+count=${#server[@]}
+
+echo "$count"
+
+*******************************************************************************************************************************************************************************************************************************
+select  - menu without while+case
+$REPLY	=	contains the number
+
+select option in "Start" "Stop" "Restart" "Exit"; do
+    echo "You chose $option"
+    break
+done
+
+*******************************************************************************************************************************************************************************************************************************
+trap - signal handling 
+
+without trap -> scripts exits abruptly (resource leakage)
+with trap -> you clean up and exit gracefully
+
+cleanup() {
+    echo "Cleaning up before exit..."
+}
+
+trap cleanup SIGINT SIGTERM
+
+
+
 
